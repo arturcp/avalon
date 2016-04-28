@@ -42,11 +42,11 @@ class Game
   end
 
   def evil_team
-    @players.select { |player| player.character.good? }
+    @players.select { |player| player.character.evil? }
   end
 
   def merlin
-    @players.select { |player| player.character.is_a? Characters::Merlin }.first
+    @players.find { |player| player.character.is_a? Characters::Merlin }
   end
 
   def assassin
