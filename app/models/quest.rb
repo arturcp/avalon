@@ -3,7 +3,7 @@ class Quest
   SUCCESS_STATUS = 'success'
   FAILURE_STATUS = 'failure'
 
-  def initialize(party_size)
+  def initialize(party_size = 5)
     @party_size = party_size
     @status = PENDING_STATUS
   end
@@ -16,7 +16,7 @@ class Quest
     @status = FAILURE_STATUS
   end
 
-  def succeded?
+  def succeeded?
     @status == SUCCESS_STATUS
   end
 
