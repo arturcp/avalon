@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.3.1'
 
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.0.beta4'
 gem 'pg'
 gem 'puma'
 
@@ -19,7 +19,7 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.5.0.beta3'
   gem 'dotenv-rails'
 end
 
