@@ -11,5 +11,8 @@ module Characters
       @alignment == EVIL_ALIGNMENT
     end
 
+    def name
+      @name
+    end
   end
 end

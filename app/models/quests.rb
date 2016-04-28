@@ -12,17 +12,18 @@ class Quests
 
   def initialize(players_count)
     @players_count = players_count
-    @current_quest = 0
+    @current_quest = -1
 
     initialize_quest_list
   end
 
   def end?
-    success_count > 2 || failure_count > 2 || @current_quest > 5
+    success_count > 2 || failure_count > 2 || @current_quest > 4
   end
 
   def next_quest
     @current_quest += 1
+    @quests[@current_quest]
   end
 
   private
@@ -38,10 +39,10 @@ class Quests
   end
 
   def success_count
-    @quests.reduce(0) { |quest| quest.succeed? ? 1 : 0 }
+    @quests.reduce(0) { |sum, quest| sum += quest.succeeded? ? 1 : 0 }
   end
 
   def failure_count
-    @quests.reduce(0) { |quest| quest.failed? ? 1 : 0 }
+    @quests.reduce(0) { |sum, quest| sum += quest.failed? ? 1 : 0 }
   end
 end
