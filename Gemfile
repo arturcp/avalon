@@ -27,3 +27,13 @@ group :development do
   gem 'spring'
   gem 'quiet_assets'
 end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'simplecov', require: false
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'poltergeist'
+end
