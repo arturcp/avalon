@@ -1,4 +1,6 @@
 class Quest
+  attr_reader :party_size, :status
+
   PENDING_STATUS = 'pending'
   SUCCESS_STATUS = 'success'
   FAILURE_STATUS = 'failure'
@@ -17,10 +19,10 @@ class Quest
   end
 
   def succeeded?
-    @status == SUCCESS_STATUS
+    status == SUCCESS_STATUS
   end
 
   def failed?
-    @status == FAILURE_STATUS
+    status == FAILURE_STATUS
   end
 end
