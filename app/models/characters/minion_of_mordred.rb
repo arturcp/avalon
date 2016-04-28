@@ -1,5 +1,5 @@
 module Characters
-  class MinionOfMordred
+  class MinionOfMordred < Character
     def initialize
       @alignment = Character::EVIL_ALIGNMENT
     end
