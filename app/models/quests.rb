@@ -21,6 +21,10 @@ class Quests
     success_count > 2 || failure_count > 2 || @current_quest > 5
   end
 
+  def next_quest
+    @current_quest += 1
+  end
+
   private
 
   def initialize_quest_list
