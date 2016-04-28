@@ -26,6 +26,8 @@ end
 group :development do
   gem 'spring'
   gem 'quiet_assets'
+  gem 'guard'
+  gem 'guard-rspec', require: false
 end
 
 group :test do
