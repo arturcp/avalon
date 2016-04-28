@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   username: <%= ENV["POSTGRESQL_USER"] || ENV["USER"] || 'postgres' %>
-  database: <%= ENV["POSTGRESQL_DATABASE"] || 'youse_development' %>
+  database: <%= ENV["POSTGRESQL_DATABASE"] || 'avalon_development' %>
   password: <%= ENV["POSTGRESQL_PASSWORD"] %>
   host: <%= ENV["POSTGRESQL_HOST"] || 'localhost' %>
   pool: <%= ENV["POSTGRESQL_POOL"] || 5 %>
