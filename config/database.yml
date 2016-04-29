@@ -10,11 +10,11 @@ default: &default
 
 development:
   <<: *default
-  database: youse_development
+  database: avalon_development
 
 test:
   <<: *default
-  database: youse_test
+  database: avalon_test
 
 production:
   <<: *default
