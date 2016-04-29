@@ -26,6 +26,14 @@ class Quests
     @quests[@current_quest]
   end
 
+  def good_won?
+    success_count > 2
+  end
+
+  def evil_won?
+    failure_count > 2
+  end
+
   private
 
   def initialize_quest_list

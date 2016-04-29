@@ -36,22 +36,43 @@ class Game
 
       puts
     end
+
+    line = '-' * 70
+    if @quests.good_won?
+      if assassin.character.guessed_who_is_merlin?(players)
+        puts line.red
+        puts '|              O bem estava para triunfar sobre o mal, mas...        |'.yellow
+        print '|                       O Merlin foi '.yellow
+        print 'ASSASSINADO!                    |'.red
+        puts
+        puts '|                     AS TREVAS VENCERAM A LUZ                       |'.red
+        puts line.red
+      else
+        puts line.green
+        puts '|                   O BEM TRIUNFOU SOBRE O MAL                       |'.green
+        puts line.green
+      end
+    else
+      puts line.red
+      puts '|                     AS TREVAS VENCERAM A LUZ                       |'.red
+      puts line.red
+    end
   end
 
   def good_team
-    @players.select { |player| player.character.good? }
+    @good_team ||= @players.select { |player| player.character.good? }
   end
 
   def evil_team
-    @players.select { |player| player.character.evil? }
+    @evil_team ||= @players.select { |player| player.character.evil? }
   end
 
   def merlin
-    @players.find { |player| player.character.is_a? Characters::Merlin }
+    @merlin ||= @players.find { |player| player.character.is_a? Characters::Merlin }
   end
 
   def assassin
-    @players.select { |player| player.character.is_a? Characters::Assassin }
+    @assassin ||= @players.find { |player| player.character.is_a? Characters::Assassin }
   end
 
   private
