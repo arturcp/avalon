@@ -54,6 +54,7 @@ GEM
       launchy
     cliver (0.3.2)
     coderay (1.1.1)
+    colorize (0.7.7)
     concurrent-ruby (1.0.1)
     database_cleaner (1.5.3)
     diff-lcs (1.2.5)
@@ -222,6 +223,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-screenshot
+  colorize
   database_cleaner
   dotenv-rails
   factory_girl_rails

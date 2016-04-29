@@ -26,12 +26,13 @@ class Game
     while !@quests.end? && current_king <= 3
       current_king += 1
       king = players[current_king]
-      puts "#{current_king + 1}o turno"
+      puts "#{current_king + 1}o turno".yellow
       puts "#{king.name} é o rei"
       current_quest = @quests.next_quest
       puts "O rei precisa escolher #{current_quest.party_size} cavaleiros para uma missão"
 
-      Counsel.new(king, counselors(king), current_quest).start
+      knights = Counsel.new(king, counselors(king), current_quest).summon_the_knights
+      knights.embark_on_a_quest(current_quest)
 
       puts
     end
@@ -91,23 +92,29 @@ class Game
 
   # Simulation methods below. They probably can be removed after the game is properly tested
   def print_introduction
+    puts
+    puts '    / \__   ____ _| | ___  _ __  '.green
+    puts "   / _ \\ \\ / / _` | |/ _ \\| '_ \\ ".green
+    puts '  / ___ \ V / (_| | | (_) | | | |'.green
+    puts ' /_/   \_\_/ \__,_|_|\___/|_| |_|'.green
+    puts
+
     bullets = '*' * 30
-    puts "#{bullets} Avalon #{bullets}"
     puts "Estrelando: "
     puts
     players.each do |player|
       puts "* #{player.name}, como #{player.character.name}"
     end
     puts
-    puts "\"A cidade dorme..."
-    puts "Os minions de Mordred acordam e se reconhecem"
+    puts "\"A cidade dorme...".yellow
+    puts "Os minions de Mordred acordam e se reconhecem".yellow
     puts "(#{evil_team.map(&:name).join(' / ')} abrem os olhos)."
-    puts "Os maus voltam a dormir."
-    puts "Todos estendem o braço com o punho fechado."
-    puts "Os maus erguem o polegar :thumbsup:"
-    puts "O Merin acorda e reconhece seus inimigos"
+    puts "Os maus voltam a dormir.".yellow
+    puts "Todos estendem o braço com o punho fechado.".yellow
+    puts "Os maus erguem o polegar :thumbsup:".yellow
+    puts "O Merin acorda e reconhece seus inimigos".yellow
     puts "(#{merlin.name} abre os olhos)."
-    puts "Merlin fecha os olhos e a cidade volta a dormir.\""
+    puts "Merlin fecha os olhos e a cidade volta a dormir.\"".yellow
     puts "#{bullets}********#{bullets}"
     puts
   end

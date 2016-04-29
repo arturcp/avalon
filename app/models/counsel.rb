@@ -15,7 +15,7 @@ class Counsel
     votes > counselors.count / 2
   end
 
-  def start
+  def summon_the_knights
     party = assemble_a_party
     puts "O rei escolheu #{party.map(&:name).join(' / ')}"
     puts 'O conselho se reúne para decidir'
@@ -33,7 +33,9 @@ class Counsel
       print_counsel_decision(party_accepted)
     end
 
-    king_decide unless party_accepted
+    party = king_decide unless party_accepted
+
+    Knights.new(party)
   end
 
   private
@@ -67,7 +69,9 @@ class Counsel
 
   def king_decide
     puts 'Cansado de seus conselheiros, o rei decide sozinho.'
-    party = assemble_a_party(@quest.party_size)
+    party = assemble_a_party
     puts "O rei escolheu #{party.map(&:name).join(' / ')}"
+
+    party
   end
 end
