@@ -7,6 +7,7 @@ class Counsel
     @king = king
     @counselors = counselors
     @quest = current_quest
+    @voted_parties = []
   end
 
   def accept_party?
@@ -45,7 +46,15 @@ class Counsel
       party << players_list.delete_at(index)
     end
 
-    party
+    party.sort!
+
+    if @voted_parties.include?(party)
+      puts "O rei tentou convocar novamente um grupo rejeitado (#{party.map(&:name).join(' / ')}), mas as leis de Avalon o obrigaram a mudar de ideia"
+      assemble_a_party
+    else
+      @voted_parties << party
+      party
+    end
   end
 
   def print_counsel_decision(party_accepted)
