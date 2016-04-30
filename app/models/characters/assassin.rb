@@ -6,7 +6,7 @@ module Characters
     end
 
     def guessed_who_is_merlin?(players)
-      index = rand(0..players.length - 1)
+      index = Dice.roll(0..players.length - 1)
 
       players[index].character.is_a? Characters::Merlin
     end
