@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :player do
-    name 'John Doe'
+    sequence :name do |n|
+      "player #{n}"
+    end
 
     initialize_with { Player.new(name) }
 
@@ -10,6 +12,14 @@ FactoryGirl.define do
 
     trait :assassin do
       character FactoryGirl.build(:assassin)
+    end
+
+    trait :loyal do
+      character FactoryGirl.build(:loyal)
+    end
+
+    trait :minion do
+      character FactoryGirl.build(:minion)
     end
   end
 end

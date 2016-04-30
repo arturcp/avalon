@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 describe Game do
-  describe 'Players count' do
-    it 'raises an exception if there are not at least 5 players in the game' do
-      expect { Game.new([build(:player)]) }.to raise_error(StandardError)
-    end
-  end
-
   describe '.new' do
     let(:players) do
       [
@@ -34,6 +28,56 @@ describe Game do
     it 'does not shuffle the players if it is explicitly required' do
       game = Game.new(players, false)
       expect(game.players).to eq(players)
+    end
+
+    it 'raises an exception if there are not at least 5 players in the game' do
+      expect { Game.new([build(:player)]) }.to raise_error(StandardError)
+    end
+  end
+
+  context 'when spliting the teams accorgin to the alignment' do
+    let(:player_with_merlin) { build(:player) }
+    let(:player_with_assassin) { build(:player) }
+    let(:player_with_loyal1) { build(:player) }
+    let(:player_with_loyal2) { build(:player) }
+    let(:player_with_minion) { build(:player) }
+
+    let(:game) do
+      Game.new([
+        player_with_merlin,
+        player_with_assassin,
+        player_with_loyal1,
+        player_with_loyal2,
+        player_with_minion
+      ])
+    end
+
+    before do
+      allow(player_with_merlin).to receive(:character).and_return(build(:merlin))
+      allow(player_with_assassin).to receive(:character).and_return(build(:assassin))
+      allow(player_with_loyal1).to receive(:character).and_return(build(:loyal))
+      allow(player_with_loyal2).to receive(:character).and_return(build(:loyal))
+      allow(player_with_minion).to receive(:character).and_return(build(:minion))
+    end
+
+    describe '#good_team' do
+      it 'lists the players with good alignment characters' do
+        expect(game.good_team).to include(player_with_merlin, player_with_loyal1, player_with_loyal2)
+      end
+
+      it 'does not list the players with evil alignment characters' do
+        expect(game.good_team).not_to include(player_with_assassin, player_with_minion)
+      end
+    end
+
+    describe '#evil_team' do
+      it 'lists the players with evil alignment characters' do
+        expect(game.evil_team).to include(player_with_assassin, player_with_minion)
+      end
+
+      it 'does not list the players with good alignment characters' do
+        expect(game.evil_team).not_to include(player_with_merlin, player_with_loyal1, player_with_loyal2)
+      end
     end
   end
 end
