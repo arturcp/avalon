@@ -79,5 +79,17 @@ describe Game do
         expect(game.evil_team).not_to include(player_with_merlin, player_with_loyal1, player_with_loyal2)
       end
     end
+
+    describe '#merlin' do
+      it 'finds the player playing with the Merlin character' do
+        expect(game.merlin).to eq(player_with_merlin)
+      end
+    end
+
+    describe '#assassin' do
+      it 'finds the player playing with the Assassin character' do
+        expect(game.assassin).to eq(player_with_assassin)
+      end
+    end
   end
 end
