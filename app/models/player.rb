@@ -6,7 +6,7 @@ class Player
   end
 
   def vote
-    rand(0..1)
+    Dice.roll(0..1)
   end
 
   def <=>(other)

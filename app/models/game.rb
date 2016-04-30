@@ -103,7 +103,7 @@ class Game
   end
 
   def random_character(roles)
-    chosen = rand(0..roles.length - 1)
+    chosen = Dice.roll(0..roles.length - 1)
     roles.delete_at(chosen)
   end
 

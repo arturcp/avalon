@@ -44,7 +44,7 @@ class Counsel
     players_list = @counselors + [@king]
     party = []
     (1..@quest.party_size).each do |_|
-      index =  rand(0..players_list.length - 1)
+      index =  Dice.roll(0..players_list.length - 1)
       party << players_list.delete_at(index)
     end
 

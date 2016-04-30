@@ -26,6 +26,6 @@ class Knights
   # For now, evil has a 50% of change of bluffing
   # this is for balancing the result of the missions
   def evil_vote
-    rand(0..1)
+    Dice.roll(0..1)
   end
 end
