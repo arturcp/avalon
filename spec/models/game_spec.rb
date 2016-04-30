@@ -3,20 +3,37 @@ require 'rails_helper'
 describe Game do
   describe 'Players count' do
     it 'raises an exception if there are not at least 5 players in the game' do
-      expect { Game.new([Player.new('Chiquitão')]) }.to raise_error(StandardError)
+      expect { Game.new([build(:player)]) }.to raise_error(StandardError)
     end
   end
 
-  describe 'Assigning roles' do
-    xit 'ensures all players have a role' do
-      game = Game.new([Player.new('Chiquitão'), Player.new('John'), Player.new('Doe'), Player.new('Jane'), Player.new('Roe'), Player.new('Mariah')])
+  describe '.new' do
+    let(:players) do
+      [
+        Player.new('Chiquitão'),
+        Player.new('John'),
+        Player.new('Doe'),
+        Player.new('Jane'),
+        Player.new('Roe'),
+        Player.new('Mariah')
+      ]
+    end
 
-      (1..6).each do |index|
+    let(:game) { Game.new(players) }
+
+    it 'ensures all players have a role' do
+      (0..5).each do |index|
         expect(game.players[index].character).not_to be_nil
       end
     end
 
-    xit 'assigns all roles to the players' do
+    it 'shuffles the players by default' do
+      expect(game.players).not_to eq(players)
+    end
+
+    it 'does not shuffle the players if it is explicitly required' do
+      game = Game.new(players, false)
+      expect(game.players).to eq(players)
     end
   end
 end
