@@ -47,10 +47,10 @@ class Quests
   end
 
   def success_count
-    @quests.reduce(0) { |sum, quest| sum += quest.succeeded? ? 1 : 0 }
+    @quests.count { |quest| quest.succeeded? }
   end
 
   def failure_count
-    @quests.reduce(0) { |sum, quest| sum += quest.failed? ? 1 : 0 }
+    @quests.count { |quest| quest.failed? }
   end
 end

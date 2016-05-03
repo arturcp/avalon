@@ -1,6 +1,8 @@
 class Game
   attr_reader :players
 
+  MAX_ALLOWED_PLAYERS = 10
+  MIN_ALLOWED_PLAYESR = 5
   ALIGNMENT_PROPORTION = {
     5 =>  { good: 3, evil: 2 },
     6 =>  { good: 4, evil: 2 },
@@ -78,7 +80,7 @@ class Game
   private
 
   def invalid_players_count?
-    players.count > 10 || players.count < 5
+    ! players.count.between?(MIN_ALLOWED_PLAYESR, MAX_ALLOWED_PLAYERS)
   end
 
   def assign_roles
@@ -103,7 +105,7 @@ class Game
   end
 
   def random_character(roles)
-    chosen = Dice.roll(0..roles.length - 1)
+    chosen = Dice.roll(0...roles.length)
     roles.delete_at(chosen)
   end
 
